@@ -15,7 +15,9 @@ print(df.rdd.getNumPartitions())
 df=df.coalesce(8)
 print(df.rdd.getNumPartitions())
 l=df.columns
-print(l)
+print(l[1:4])
+
+
 
 
 
