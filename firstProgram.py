@@ -9,8 +9,14 @@ sparkconf.set("spark.master","local[1]")
 spark = SparkSession.builder.config(conf=sparkconf).getOrCreate()
 
 df = spark.read.option("header",True).option("inferSchema",True).csv("C:\\Users\\srinivas\\Desktop\\result.csv")
-df=df.select("mail", "phone_no").filter(col("phone_no").like("%119%"))
-df.rdd.repartition(5)
+print(df.rdd.getNumPartitions())
+df=df.repartition(15)
+print(df.rdd.getNumPartitions())
+df=df.coalesce(8)
+print(df.rdd.getNumPartitions())
+l=df.columns
+print(l)
+
 
 
 
